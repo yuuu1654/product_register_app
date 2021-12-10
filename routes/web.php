@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('top');
+    return view('logout');
 });
+
+Route::get("/member/regist", "MemberController@new")->name("member.regist");
+//Route::get('member/regist', 'MemberController@new')->name('member.regist');
+
+Route::post("/member/store", "MemberController@store")->name("member.store");
+
+Route::get('top', 'MemberController@index')
+->name('top');

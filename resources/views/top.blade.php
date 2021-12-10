@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.app1")
 
 @section("title", "トップページ")
 
@@ -10,11 +10,11 @@
 		<div class="header-menus">
 			<!-- 商品一覧ボタン -->
 			<div class="button">
-				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='thread.php'" value="商品一覧">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('member.regist') }}'" value="商品一覧">
 			</div>
 			<!-- 新規商品登録 -->
 			<div class="button">
-				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='thread_regist.php'" value="新規商品登録">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('member.regist') }}'" value="新規商品登録">
 			</div>
 			<!-- マイページ -->
 			<div class="button">
