@@ -11,14 +11,8 @@
 			</div>
 			<!-- 新規会員登録 -->
 			<div class="button">
-				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('member.regist') }}'" value="新規会員登録">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('members.regist') }}'" value="新規会員登録">
 			</div>
-
-			<form method="GET" action="{{ route('member.regist') }}">
-				<button type="submit" class="btn btn-primary">
-					新規登録
-				</button>
-			</form>
 			<!-- ログイン -->
 			<form action="#" class="button" method="POST">
 				@csrf

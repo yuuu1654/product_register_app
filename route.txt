@@ -1,6 +1,9 @@
-+--------+----------+----------+------+---------+--------------+
-| Domain | Method   | URI      | Name | Action  | Middleware   |
-+--------+----------+----------+------+---------+--------------+
-|        | GET|HEAD | /        |      | Closure | web          |
-|        | GET|HEAD | api/user |      | Closure | api,auth:api |
-+--------+----------+----------+------+---------+--------------+
++--------+----------+---------------+---------------+---------------------------------------------+--------------+
+| Domain | Method   | URI           | Name          | Action                                      | Middleware   |
++--------+----------+---------------+---------------+---------------------------------------------+--------------+
+|        | GET|HEAD | /             |               | Closure                                     | web          |
+|        | GET|HEAD | api/user      |               | Closure                                     | api,auth:api |
+|        | GET|HEAD | member/regist | member.regist | App\Http\Controllers\MemberController@new   | web          |
+|        | POST     | member/store  | member.store  | App\Http\Controllers\MemberController@store | web          |
+|        | GET|HEAD | top           | top           | App\Http\Controllers\MemberController@index | web          |
++--------+----------+---------------+---------------+---------------------------------------------+--------------+

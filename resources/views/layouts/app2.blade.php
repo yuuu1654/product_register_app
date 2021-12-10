@@ -12,30 +12,10 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<style>
 		body{
-
-		}
-		header{
-			height: 80px;
-			background-color: #FFCC99; 
-		}
-		.header-logo {
-			float: left;
-		}
-		.header-logo h1 {
-			line-height: 80px;
-			padding-left: 40px;
-		}
-		.header-menus {
-			float: right;
-		}
-		.header-menus .button {
-			float: left;
-			padding-right: 40px;
-		}
-		main{
-			padding: 50px 10px 10px 10px;
+			padding: 10px;
 			max-width: 600px;
 			margin: 0px auto;
+			background-color: #FFFFAA;
 		}
 		div.button{
 			text-align: center;
@@ -50,6 +30,12 @@
 		.btn{
 			margin: 20px 0 20px 0;  
 			padding: 10px 40px 10px 40px;
+		}
+		h1{
+			padding-bottom: 50px;
+		}
+		.conf_form{
+			padding-left: 130px;
 		}
 	</style>
 </head>

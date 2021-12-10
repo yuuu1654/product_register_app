@@ -15,10 +15,12 @@ Route::get('/', function () {
     return view('logout');
 });
 
-Route::get("/member/regist", "MemberController@new")->name("member.regist");
-//Route::get('member/regist', 'MemberController@new')->name('member.regist');
 
-Route::post("/member/store", "MemberController@store")->name("member.store");
+
+Route::group(["prefix" => "members"], function(){
+    Route::get("regist", "MemberController@create")->name("members.regist");
+    Route::post("store", "MemberController@store")->name("members.store");
+});
 
 Route::get('top', 'MemberController@index')
 ->name('top');
