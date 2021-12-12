@@ -15,10 +15,12 @@ class MemberController extends Controller
      * 新規会員登録画面を表示する
      * @return view
      */
-    public function new(){
+    public function new(Request $request){
         //新規会員登録画面用の変数
         $mode = "input";
-        return view("members.regist", compact("mode"));
+        //セッションから会員のデータを取得
+        $member =  $request->session()->get("form_input");
+        return view("members.regist", compact("mode", "member"));
     }
 
 
