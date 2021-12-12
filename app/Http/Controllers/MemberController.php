@@ -15,23 +15,34 @@ class MemberController extends Controller
      * 新規会員登録画面を表示する
      * @return view
      */
-    public function create(){
-        return view("members.regist");
+    public function new(){
+        //新規会員登録画面用の変数
+        $mode = "input";
+        return view("members.regist", compact("mode"));
     }
 
 
     /**
-     * 会員登録確認画面を表示する
-     * @return view
+     * バリデーションをかけてセッションに値を保存する
+     * @param $request
      */
     public function confirm(ConfirmMemberRequest $request){
-        $mode = "confirm";
-
         $member = $request->all();
         //セッションに値を保存する
         $request->session()->put("form_input", $member);
-        $member =  $request->session()->get("form_input");
+        return redirect("members/create");
+    }
 
+
+    /**
+     * 確認画面を表示する
+     * @return view
+     */
+    public function create(Request $request){
+        //確認画面用の変数
+        $mode = "confirm";
+        //セッションから会員のデータを取得
+        $member =  $request->session()->get("form_input");
         return view("members.regist", compact("mode", "member"));
     }
     
@@ -39,7 +50,6 @@ class MemberController extends Controller
     /**
      * 会員情報を保存する
      * @param $request
-     * @return view
      */
     public function store(StoreMemberRequest $request){
 
@@ -54,9 +64,17 @@ class MemberController extends Controller
             \DB::rollback();
             abort(500);
         }
-        $mode = "done";  //完了画面モード
         $request->session()->forget("form_input");  //セッションを空にする
+        return redirect("members/done");
+    }
 
-        return view("member.regist", compact("mode"));
+
+    /**
+     * 登録完了画面を表示する
+     * @return view
+     */
+    public function regist_done(){
+        $mode = "done";  //完了画面モード
+        return view("members.regist", compact("mode"));
     }
 }

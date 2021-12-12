@@ -13,15 +13,22 @@
 
 Route::get('/', function () {
     return view('logout');
-});
+})->name("logout");
 
 
 
 Route::group(["prefix" => "members"], function(){
-    Route::get("regist", "MemberController@create")->name("members.regist");
+    //新規登録画面の表示
+    Route::get("regist", "MemberController@new")->name("members.regist");  
+    //バリデーションをかけてセッションに値を保存する
     Route::post("confirm", "MemberController@confirm")->name("members.confirm");
+
+    //確認画面の表示
+    Route::get("create", "MemberController@create")->name("members.create");  
+    //会員情報をDBに登録
     Route::post("store", "MemberController@store")->name("members.store");
-    //Route::get("done", "MemberController@done")->name("members.done");
+    //完了画面の表示
+    Route::get("done", "MemberController@regist_done")->name("members.done"); 
 });
 
 Route::get('top', 'MemberController@index')

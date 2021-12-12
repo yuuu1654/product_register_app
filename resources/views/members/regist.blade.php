@@ -3,11 +3,6 @@
 @section("title", "会員登録")
 
 
-@php
-	$mode = "input";
-@endphp
-
-
 @if ( $mode == "input" )
 	<!-- フォーム画面 -->
 	@section("main")
@@ -55,10 +50,10 @@
 @elseif ( $mode == "confirm" )
 	<!-- 確認画面 -->
 	@section("main")
-		@if ($member["gender"] == 1)
-			$gender = "男性";
+		@if ($member["gender"] === 1)
+			@php $gender = "男性" @endphp
 		@else
-			$gender = "女性";
+			@php $gender = "女性" @endphp 
 		@endif
 		<div class="container">
 			<h1>会員情報確認画面</h1>
@@ -75,9 +70,6 @@
 			</div>
 		</form>
 		<form method="GET" action="{{ route('members.regist') }}">
-			<button type="submit" class="btn btn-secondary btn-lg">
-			前に戻る
-			</button>
 			<div class="button">
 				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('members.regist') }}'" value="前に戻る">
 			</div>
