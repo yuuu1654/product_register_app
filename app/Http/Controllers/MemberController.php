@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreMemberRequest;  //リクエストクラスの読み込み
 use App\Http\Requests\ConfirmMemberRequest;  //リクエストクラスの読み込み
+use Illuminate\Support\Facades\Hash;  //パスワードのハッシュ化
 
 //保存する為にモデルを呼び出す
 use App\Models\Member;
@@ -56,6 +57,7 @@ class MemberController extends Controller
     public function store(StoreMemberRequest $request){
 
         $member =  $request->session()->get("form_input");
+        $member["password"] = Hash::make($member["password"]);  //passwordをハッシュ化して保存
 
         \DB::beginTransaction();
         try {
