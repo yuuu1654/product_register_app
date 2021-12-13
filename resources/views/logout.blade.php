@@ -14,10 +14,9 @@
 				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('members.regist') }}'" value="新規会員登録">
 			</div>
 			<!-- ログイン -->
-			<form action="#" class="button" method="POST">
-				@csrf
-				<input type="submit" class="btn btn-secondary btn-lg" name="login" value="ログイン">
-			</form>
+			<div class="button">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('members.login') }}'" value="ログイン">
+			</div>
 		</div>
 	</header>
 @endsection

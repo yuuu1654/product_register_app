@@ -112,7 +112,7 @@
 			<p class="done">会員登録が完了しました。</p>
 		</div>
 		<div class="button">
-			<input type="submit" class="btn btn-primary btn-lg" onclick="location.href='{{ route('logout') }}'" value="トップに戻る">
+			<input type="submit" class="btn btn-primary btn-lg" onclick="location.href='{{ route('/') }}'" value="トップに戻る">
 		</div>
 	@endsection
 @endif
