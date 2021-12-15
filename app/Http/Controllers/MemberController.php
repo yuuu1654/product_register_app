@@ -59,6 +59,9 @@ class MemberController extends Controller
         $member =  $request->session()->get("form_input");
         $member["password"] = Hash::make($member["password"]);  //passwordをハッシュ化して保存
 
+        // 二重送信対策
+        $request->session()->regenerateToken();
+
         \DB::beginTransaction();
         try {
             //会員を登録

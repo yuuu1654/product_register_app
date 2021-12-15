@@ -24,7 +24,8 @@ class StorePasswordResetRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "password" => "required | regex:/^[a-zA-Z0-9]+$/ | min:8 | max:20",
+            "password_confirmation" => "required | regex:/^[a-zA-Z0-9]+$/",
         ];
     }
 }

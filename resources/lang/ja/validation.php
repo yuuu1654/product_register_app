@@ -145,6 +145,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        "name_sei" => "氏名(姓)",
+        "name_mei" => "氏名(名)",
+        "nickname" => "ニックネーム",
+        "gender" => "性別",
+        "password" => "パスワード",
+        "password_confirmation" => "パスワード確認",
+        "email" => "メールアドレス",
+    ],
 
 ];

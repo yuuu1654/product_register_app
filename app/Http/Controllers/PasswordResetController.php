@@ -73,7 +73,7 @@ class PasswordResetController extends Controller
      */
     public function password_reset(StorePasswordResetRequest $request){
 
-        $email =  $request->session()->get("form_input");
+        $password =  $request->password;
         $member["password"] = Hash::make($member["password"]);  //passwordをハッシュ化して保存
 
         \DB::beginTransaction();
