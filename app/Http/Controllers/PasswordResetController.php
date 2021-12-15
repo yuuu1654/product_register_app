@@ -30,6 +30,15 @@ class PasswordResetController extends Controller
 
         //$email = $request->input('email');
         $email = $request->email;
+
+
+
+        //セッションに値を保存する
+        $request->session()->put("form_input", $email);
+        
+
+
+
         //メールを送信する処理
         $message  = "パスワード再発行 \r\n"
                     . "以下のURLをクリックして \r\n"
@@ -69,23 +78,35 @@ class PasswordResetController extends Controller
 
     /**
      * パスワードを再設定する
+     * パスワードを再設定してログイン状態にしてトップ画面に遷移させる
      * @param $request
      */
     public function password_reset(StorePasswordResetRequest $request){
+        //フォームから入力されたパスワード
+        $new_password =  $request->password;
+        //セッションから会員のデータを取得
+        $email =  $request->session()->get("form_input");
+        $member = Member::where("email", $email);
 
-        $password =  $request->password;
-        $member["password"] = Hash::make($member["password"]);  //passwordをハッシュ化して保存
+        if (Hash::check($new_password, $member->password)) {
+            // 一致したときの処理
+            \DB::beginTransaction();
+            try {
+                //パスワードのみ更新(リセット)
+                $member->fill([
+                    "password"=> Hash::make($new_password),
+                ]);
+                $member->save();
+                \DB::commit();
+            } catch(\Throwable $e) {
+                \DB::rollback();
+                abort(500);
+            }
+            $request->session()->forget("form_input");  //セッションを空にする
+            return redirect("/");
+        } else {
+            // 一致しなかったときの処理
 
-        \DB::beginTransaction();
-        try {
-            //会員を登録
-            Member::create($member);
-            \DB::commit();
-        } catch(\Throwable $e) {
-            \DB::rollback();
-            abort(500);
         }
-        $request->session()->forget("form_input");  //セッションを空にする
-        return redirect("members/done");
     }
 }

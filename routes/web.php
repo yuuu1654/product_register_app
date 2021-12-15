@@ -29,7 +29,12 @@ Route::group(["prefix" => "members"], function(){
     //完了画面の表示
     Route::get("done", "MemberController@regist_done")->name("members.done"); 
     //ログインフォームの表示
-    Route::get("login", "MemberController@login_form")->name("members.login");
+    //Route::get("login", "MemberController@login_form")->name("members.login");
+    Route::get("login", "Auth\AuthController@login_form")->name("members.login");
+
+    //ログイン処理
+    Route::post("login", "Auth\AuthController@login")->name("members.login");
+
     //パスワード再設定フォームの表示
     Route::get("password_reset", "MemberController@password_reset_form")->name("members.password_reset");   
 });

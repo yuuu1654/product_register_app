@@ -15,7 +15,7 @@
 					@endforeach
 				</div>
 			@endif
-			<form action="top.php" method="post">
+			<form action="{{ route('members.login') }}" method="post">
 				@csrf
 				<!-- メールアドレスのみ初期値を表示する -->
 				<p>

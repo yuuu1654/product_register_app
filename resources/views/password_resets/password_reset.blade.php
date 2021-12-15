@@ -87,6 +87,8 @@
 				<div class="button">
 					<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('/') }}'" value="トップに戻る">
 				</div>
+			</div>
+		</div>
 	@endsection
 @endif
 
