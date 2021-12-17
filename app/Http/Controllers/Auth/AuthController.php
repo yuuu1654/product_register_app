@@ -14,6 +14,7 @@ class AuthController extends Controller
      * @return view
      */
     public function login_form(){
+        session()->forget("form_input");  //セッションを空にする
         return view("members.login");
     }
 
@@ -43,6 +44,6 @@ class AuthController extends Controller
         //ログインに失敗したらエラーメッセージと共に元のページに返す
         return back()->withErrors([
             "login_error" => "IDかパスワードが間違っています",
-        ]);
+        ])->withInput($email);
     }
 }
