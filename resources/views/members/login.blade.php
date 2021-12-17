@@ -15,12 +15,27 @@
 					@endforeach
 				</div>
 			@endif
+			@if (session("login_error"))  
+				<div class="alert alert-danger">
+					{{ session("login_error") }}
+				</div>
+			@endif
 			<form action="{{ route('members.login') }}" method="post">
 				@csrf
 				<!-- メールアドレスのみ初期値を表示する -->
-				<p>
-					メールアドレス（ID）<input type="email" class="" name="email" value="{{ old('email') }}"><br>
-				</p>
+				@php
+					//セッションから会員のデータを取得
+					$email = session()->get("form_input");
+				@endphp
+				@if ( $email['email'] )
+					<p>
+						メールアドレス（ID）<input type="email" class="" name="email" value="{{ $email['email'] }}"><br>
+					</p>
+				@else
+					<p>
+						メールアドレス（ID）<input type="email" class="" name="email" value="{{ old('email') }}"><br>
+					</p>
+				@endif
 				<p>
 					パスワード　　　　　<input type="password" class="" name="password" value=""><br>
 				</p>

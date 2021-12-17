@@ -20,16 +20,27 @@ class AuthController extends Controller
 
     /**
      * ログイン処理を行う
+     * ①emailをキーにしてDBにメンバーが保存されているか検索して取得
+     * ②取得したメンバーのpasswordと入力されたpasswordを比較する
+     * ③パスワードが一致してたらログイン成功
+     * attempt() : SessionGuard, l:353 
+     * 
      * @param App\Http\Requests\LoginFormRequest $request
      */
     public function login(LoginFormRequest $request){
         $credentials = $request->only("email, password");
+        $email = $request->only("email");
+        //セッションに値を保存
+        $request->session()->put("form_input", $email);
 
+        //ログインの判定
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect("/");
+            //ログイン成功したらトップ画面に遷移する
+            $request->session()->forget("form_input");  //セッションを空にする
+            return redirect("/")->with("login_success", "ログイン成功しました！");
         }
-
+        //ログインに失敗したらエラーメッセージと共に元のページに返す
         return back()->withErrors([
             "login_error" => "IDかパスワードが間違っています",
         ]);

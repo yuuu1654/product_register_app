@@ -27,18 +27,9 @@ class PasswordResetController extends Controller
      * @param $request
      */
     public function send_email(StorePasswordResetRequest $request){
-
-        //$email = $request->input('email');
         $email = $request->email;
-
-
-
         //セッションに値を保存する
         $request->session()->put("form_input", $email);
-        
-
-
-
         //メールを送信する処理
         $message  = "パスワード再発行 \r\n"
                     . "以下のURLをクリックして \r\n"

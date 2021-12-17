@@ -5,7 +5,7 @@
 @section("header")
 	<header>
 		<div class="header-logo">
-			<h2>ようこそ<?php //echo h($login_member["name_sei"]) ?><?php //echo h($login_member["name_mei"]) ?>さん</h2>
+			<h2>ようこそ {{ Auth::member()->name_sei }} {{ Auth::member()->name_sei }} さん</h2>
 		</div>
 		<div class="header-menus">
 			<!-- 商品一覧ボタン -->
@@ -26,4 +26,12 @@
 			</form>
 		</div>
 	</header>
+@endsection
+
+@section("main")
+	@if (session("login_success"))  
+		<div class="alert alert-success">
+			{{ session("login_success") }}
+		</div>
+	@endif
 @endsection

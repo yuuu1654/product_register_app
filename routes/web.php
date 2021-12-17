@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('logout');
 })->name("/");
 
+//トップ画面の表示(ログイン済みの場合)
+Route::get("top", function(){
+    return view("top");
+})->name("top");
+
 
 
 Route::group(["prefix" => "members"], function(){
@@ -31,10 +36,8 @@ Route::group(["prefix" => "members"], function(){
     //ログインフォームの表示
     //Route::get("login", "MemberController@login_form")->name("members.login");
     Route::get("login", "Auth\AuthController@login_form")->name("members.login");
-
     //ログイン処理
     Route::post("login", "Auth\AuthController@login")->name("members.login");
-
     //パスワード再設定フォームの表示
     Route::get("password_reset", "MemberController@password_reset_form")->name("members.password_reset");   
 });
@@ -52,5 +55,3 @@ Route::group(["prefix" => "password_resets"], function(){
     Route::post("password_reset", "PasswordResetController@password_reset")->name("password_resets.password_reset");
 });
 
-Route::get('top', 'MemberController@index')
-->name('top');
