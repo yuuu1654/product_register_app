@@ -20,3 +20,11 @@
 		</div>
 	</header>
 @endsection
+
+@section("main")
+	@if (session("logout_success"))  
+		<div class="alert alert-success">
+			{{ session("logout_success") }}
+		</div>
+	@endif
+@endsection

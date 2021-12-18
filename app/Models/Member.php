@@ -12,6 +12,8 @@ class Member extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'members';
+
     protected $fillable = ["name_sei", 
                             "name_mei", 
                             "nickname", 

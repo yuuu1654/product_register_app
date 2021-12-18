@@ -11,18 +11,39 @@
 |
 */
 
-Route::get('/', function () {
-    return view('logout');
-})->name("/");
 
-//トップ画面の表示(ログイン済みの場合)
-Route::get("top", function(){
-    return view("top");
-})->name("top");
+Route::group(['middleware' => ['guest']], function () {
+    //トップ画面の表示(ログインしていない場合)
+    Route::get('/', function () {
+        return view('logout');
+    })->name("/");
+});
+
+
+Route::group(['middleware' => ['auth']], function () {
+    //トップ画面の表示(ログイン済みの場合)
+    Route::get("top", function(){
+        return view("top");
+    })->name("top");
+});
 
 
 
 Route::group(["prefix" => "members"], function(){
+    //ログイン前のみ表示
+    Route::group(['middleware' => ['guest']], function () {
+        //ログインフォームの表示
+        Route::get("login", "Auth\AuthController@login_form")->name("members.login");
+        //ログイン処理
+        Route::post("login", "Auth\AuthController@login")->name("members.login");
+    });
+    //ログイン後のみ表示
+    Route::group(['middleware' => ['auth']], function () {
+        //ログアウト処理
+        Route::post("logout", "Auth\AuthController@logout")->name("members.logout");
+    });
+
+
     //新規登録画面の表示
     Route::get("regist", "MemberController@new")->name("members.regist");  
     //バリデーションをかけてセッションに値を保存する
@@ -33,11 +54,8 @@ Route::group(["prefix" => "members"], function(){
     Route::post("store", "MemberController@store")->name("members.store");
     //完了画面の表示
     Route::get("done", "MemberController@regist_done")->name("members.done"); 
-    //ログインフォームの表示
-    //Route::get("login", "MemberController@login_form")->name("members.login");
-    Route::get("login", "Auth\AuthController@login_form")->name("members.login");
-    //ログイン処理
-    Route::post("login", "Auth\AuthController@login")->name("members.login");
+    
+    
     //パスワード再設定フォームの表示
     Route::get("password_reset", "MemberController@password_reset_form")->name("members.password_reset");   
 });

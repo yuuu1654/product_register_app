@@ -17,11 +17,7 @@
 				</div>
 				<form action="{{ route('members.login') }}" method="post">
 					@csrf
-					<!-- メールアドレスのみ初期値を表示する -->
-					@php
-						//セッションから会員のデータを取得
-						//$email = session()->get("form_input");
-					@endphp
+					<!-- メールアドレスのみ初期値を表示 -->
 					<p>
 						メールアドレス（ID）<input type="email" class="" name="email" value="{{ old('email') }}"><br>
 					</p>
@@ -45,7 +41,7 @@
 				@endif
 				<form action="{{ route('members.login') }}" method="post">
 					@csrf
-					<!-- メールアドレスのみ初期値を表示する -->
+					<!-- メールアドレスのみ初期値を表示 -->
 					@php
 						//セッションから会員のデータを取得
 						$email = session()->get("form_input");

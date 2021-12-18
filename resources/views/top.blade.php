@@ -5,23 +5,24 @@
 @section("header")
 	<header>
 		<div class="header-logo">
-			<h2>ようこそ {{ Auth::member()->name_sei }} {{ Auth::member()->name_sei }} さん</h2>
+			<h2>ようこそ {{ Auth::user()->name_sei }} {{ Auth::user()->name_mei }} さん</h2>
 		</div>
 		<div class="header-menus">
 			<!-- 商品一覧ボタン -->
 			<div class="button">
-				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('member.regist') }}'" value="商品一覧">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('members.regist') }}'" value="商品一覧">
 			</div>
 			<!-- 新規商品登録 -->
 			<div class="button">
-				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('member.regist') }}'" value="新規商品登録">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('members.regist') }}'" value="新規商品登録">
 			</div>
 			<!-- マイページ -->
 			<div class="button">
-				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='thread_regist.php'" value="マイページ">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='#'" value="マイページ">
 			</div>
 			<!-- ログアウト -->
-			<form action="logout.php" class="button" method="POST">
+			<form action="{{ route('members.logout') }}" class="button" method="POST">
+				@csrf
 				<input type="submit" class="btn btn-secondary btn-lg" name="logout" value="ログアウト">
 			</form>
 		</div>
