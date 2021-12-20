@@ -32,6 +32,16 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(["prefix" => "members"], function(){
     //ログイン前のみ表示
     Route::group(['middleware' => ['guest']], function () {
+        //新規登録画面の表示
+        Route::get("regist", "MemberController@new")->name("members.regist");  
+        //バリデーションをかけてセッションに値を保存する
+        Route::post("confirm", "MemberController@confirm")->name("members.confirm");
+        //確認画面の表示
+        Route::get("create", "MemberController@create")->name("members.create");  
+        //会員情報をDBに登録
+        Route::post("store", "MemberController@store")->name("members.store");
+        //完了画面の表示
+        Route::get("done", "MemberController@regist_done")->name("members.done"); 
         //ログインフォームの表示
         Route::get("login", "Auth\AuthController@login_form")->name("members.login");
         //ログイン処理
@@ -44,20 +54,7 @@ Route::group(["prefix" => "members"], function(){
     });
 
 
-    //新規登録画面の表示
-    Route::get("regist", "MemberController@new")->name("members.regist");  
-    //バリデーションをかけてセッションに値を保存する
-    Route::post("confirm", "MemberController@confirm")->name("members.confirm");
-    //確認画面の表示
-    Route::get("create", "MemberController@create")->name("members.create");  
-    //会員情報をDBに登録
-    Route::post("store", "MemberController@store")->name("members.store");
-    //完了画面の表示
-    Route::get("done", "MemberController@regist_done")->name("members.done"); 
     
-    
-    //パスワード再設定フォームの表示
-    Route::get("password_reset", "MemberController@password_reset_form")->name("members.password_reset");   
 });
 
 Route::group(["prefix" => "password_resets"], function(){

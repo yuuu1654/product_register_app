@@ -86,13 +86,4 @@ class MemberController extends Controller
     }
 
 
-    // /**
-    //  * ログインフォーム画面を表示する
-    //  * @return view
-    //  */
-    // public function login_form(){
-    //     return view("members.login");
-    // }
-
-
 }

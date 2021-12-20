@@ -72,6 +72,9 @@
 						@endforeach
 					</div>
 				@endif
+				<?php
+					var_dump(session()->get("form_input"));
+				?>
 				<form action="{{ route('password_resets.password_reset') }}" method="post">
 					@csrf
 					<p>
