@@ -37,6 +37,7 @@ class PasswordResetController extends Controller
         $request->session()->put("form_input", $email);
         //メールを送信する処理
         
+        //パターン①
         // $text       = "パスワード再発行 \r\n"
         //             . "以下のURLをクリックして \r\n"
         //             . "パスワードを再発行して下さい \r\n"
@@ -46,13 +47,14 @@ class PasswordResetController extends Controller
         // mb_send_mail($email,'パスワード再設定',$text);
         // mail($email,'パスワード再設定',$message);
 
+        //パターン②
         // $text1 = "パスワード再発行";
         // $text2 = "以下のURLをクリックして";
         // $text3 = "パスワードを再発行して下さい";
         // $text4 = "https://os3-382-24072.vs.sakura.ne.jp/password_resets/password_reset";
         // Mail::to($email)->send(new PasswordReset($text1, $text2, $text3, $text4));
 
-        
+        //パターン③
         Mail::send('mails.password_reset', [
             "text1" => "パスワード再発行",
             "text2" => "以下のURLをクリックして",
@@ -64,6 +66,7 @@ class PasswordResetController extends Controller
         });
 
 
+        //パターン④
         // Mail::to($email)->send('mails.password_reset', [
         //     "text1" => "パスワード再発行",
         //     "text2" => "以下のURLをクリックして",
@@ -74,6 +77,7 @@ class PasswordResetController extends Controller
         // });
 
 
+        //パターン⑤
         //動的にデータの値を変えたい時
         // $dataArray = $request->all();
         // # Mailファサード
