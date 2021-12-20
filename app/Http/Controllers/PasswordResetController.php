@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Hash;  //パスワードのハッシュ化
 use App\Mail\PasswordReset;  //Mailableクラス
 use Illuminate\Support\Facades\Mail;  //Mailファサード
 
-//保存する為にモデルを呼び出す
 use App\Models\Member;
 
 class PasswordResetController extends Controller
@@ -144,9 +143,10 @@ class PasswordResetController extends Controller
         }
         //ログインする
         $member = Member::where("email", $email)->first();
+        $member["password"] = $new_password;
         
         $credentials = $member->only("email", "password");
-        dd($credentials);
+        //dd($credentials);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             //ログイン成功したらトップ画面に遷移する
