@@ -143,7 +143,7 @@ class PasswordResetController extends Controller
         }
         //ログインする
         $member = Member::where("email", $email)->first();
-        $member["password"] = $new_password;
+        $member["password"] = $new_password;  //ハッシュ前のパスワードを代入
         
         $credentials = $member->only("email", "password");
         //dd($credentials);
