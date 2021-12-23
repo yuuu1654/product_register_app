@@ -48,6 +48,9 @@
 					<input type="submit" class="btn btn-primary btn-lg" name="confirm" value="確認画面へ"><br>
 				</div>
 			</form>
+			<div class="button">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('/') }}'" value="トップに戻る">
+			</div>
 		@else　<!-- エラーがない時->セッションの値を表示する -->
 			<form action="{{route('members.confirm')}}" method="POST">
 				@csrf
@@ -74,6 +77,9 @@
 					<input type="submit" class="btn btn-primary btn-lg" name="confirm" value="確認画面へ"><br>
 				</div>
 			</form>
+			<div class="button">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('/') }}'" value="トップに戻る">
+			</div>
 		@endif
 	@endsection
 @elseif ( $mode == "confirm" )
