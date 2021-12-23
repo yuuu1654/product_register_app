@@ -62,14 +62,18 @@ class MemberController extends Controller
         // 二重送信対策
         $request->session()->regenerateToken();
 
-        \DB::beginTransaction();
-        try {
-            //会員を登録
-            Member::create($member);
-            \DB::commit();
-        } catch(\Throwable $e) {
-            \DB::rollback();
-            abort(500);
+        //二重登録防止 : メールアドレスで検索して、登録されていなければ登録する
+        $dup_member = Member::where("email", $member["email"])->first();
+        if (is_null($dup_member)) {
+            \DB::beginTransaction();
+            try {
+                //会員を登録
+                Member::create($member);
+                \DB::commit();
+            } catch(\Throwable $e) {
+                \DB::rollback();
+                abort(500);
+            }
         }
         $request->session()->forget("form_input");  //セッションを空にする
         return redirect("members/done");
