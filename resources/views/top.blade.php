@@ -14,7 +14,7 @@
 			</div>
 			<!-- 新規商品登録 -->
 			<div class="button">
-				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('members.regist') }}'" value="新規商品登録">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('products.regist') }}'" value="新規商品登録">
 			</div>
 			<!-- マイページ -->
 			<div class="button">

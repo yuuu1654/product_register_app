@@ -14,11 +14,14 @@ class Member extends Authenticatable
 
     protected $table = 'members';
 
-    protected $fillable = ["name_sei", 
-                            "name_mei", 
-                            "nickname", 
-                            "gender", 
-                            "password", 
-                            "email"]; //保存したいカラム名が複数の場合
+    protected $fillable = [
+        "name_sei", 
+        "name_mei", 
+        "nickname", 
+        "gender", 
+        "password", 
+        "email"
+    ]; 
+
     const UPDATED_AT = NULL;
 }

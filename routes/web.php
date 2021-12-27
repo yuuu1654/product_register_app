@@ -52,9 +52,6 @@ Route::group(["prefix" => "members"], function(){
         //ログアウト処理
         Route::post("logout", "Auth\AuthController@logout")->name("members.logout");
     });
-
-
-    
 });
 
 Route::group(["prefix" => "password_resets"], function(){
@@ -68,5 +65,24 @@ Route::group(["prefix" => "password_resets"], function(){
     Route::get("password_reset", "PasswordResetController@password_reset_form")->name("password_resets.password_reset");   
     //パスワード再設定
     Route::post("password_reset", "PasswordResetController@password_reset")->name("password_resets.password_reset");
+});
+
+
+Route::group(["prefix" => "products"], function(){
+    //ログイン前のみ表示
+    Route::group(['middleware' => ['guest']], function () {
+        
+    });
+    //ログイン後のみ表示
+    Route::group(['middleware' => ['auth']], function () {
+        //新規登録画面の表示
+        Route::get("regist", "ProductController@new")->name("products.regist");  
+        //バリデーションをかけてセッションに値を保存する
+        Route::post("confirm", "ProductController@confirm")->name("products.confirm");
+        //確認画面の表示
+        Route::get("create", "ProductController@create")->name("products.create");  
+        //会員情報をDBに登録
+        Route::post("store", "ProductController@store")->name("products.store");
+    });
 });
 

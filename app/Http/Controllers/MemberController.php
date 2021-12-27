@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreMemberRequest;  //リクエストクラスの読み込み
-use App\Http\Requests\ConfirmMemberRequest;  //リクエストクラスの読み込み
+use App\Http\Requests\StoreMemberRequest;  //リクエストクラス
+use App\Http\Requests\ConfirmMemberRequest;  //リクエストクラス
 use Illuminate\Support\Facades\Hash;  //パスワードのハッシュ化
 
 //保存する為にモデルを呼び出す
