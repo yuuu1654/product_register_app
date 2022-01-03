@@ -10,7 +10,7 @@
 		<div class="header-menus">
 			<!-- 商品一覧ボタン -->
 			<div class="button">
-				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('members.regist') }}'" value="商品一覧">
+				<input type="submit" class="btn btn-secondary btn-lg" onclick="location.href='{{ route('products.index') }}'" value="商品一覧">
 			</div>
 			<!-- 新規商品登録 -->
 			<div class="button">

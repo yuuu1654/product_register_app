@@ -84,5 +84,6 @@ Route::group(["prefix" => "products"], function(){
         //会員情報をDBに登録
         Route::post("store", "ProductController@store")->name("products.store");
     });
+    Route::get("index", "ProductController@index")->name("products.index");
 });
 

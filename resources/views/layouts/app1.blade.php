@@ -37,13 +37,20 @@
 		}
 		main{
 			background-color: #CCFFFF;
+			
 			padding-bottom: 300px;
 			padding-top: 200px;
 		}
 		.container{
 			text-align: center;
 			padding-top: 200px;
+			max-width: 600px;
+			margin: 0px auto;
 		}
+		.table{
+			text-align: center;
+		}
+		
 		footer{
 			height: 80px;
 			margin-bottom: 0px;
